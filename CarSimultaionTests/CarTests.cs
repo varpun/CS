@@ -1,4 +1,4 @@
-﻿using CarSimulation;
+﻿using CarSimulation.Model;
 using NUnit.Framework;
 
 namespace CarSimultaionTests

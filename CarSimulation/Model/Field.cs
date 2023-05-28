@@ -5,19 +5,19 @@ using System.Runtime.ConstrainedExecution;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CarSimulation
+namespace CarSimulation.Model
 {
     public class Field
     {
-        public int Width { get;  set; }
-        public int Height { get;  set; }
+        public int Width { get; set; }
+        public int Height { get; set; }
 
-        public Field(int width =0, int height = 0)
+        public Field(int width = 0, int height = 0)
         {
             Width = width;
             Height = height;
         }
-        
+
     }
 
 }

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CarSimulation
+namespace CarSimulation.Model
 {
     public enum Direction
     {

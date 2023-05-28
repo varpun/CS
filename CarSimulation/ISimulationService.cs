@@ -1,4 +1,6 @@
-﻿namespace CarSimulation
+﻿using CarSimulation.Model;
+
+namespace CarSimulation
 {
     public interface ISimulationService
     {

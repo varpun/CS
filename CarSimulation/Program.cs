@@ -1,5 +1,6 @@
 ﻿// See https://aka.ms/new-console-template for more information
 using CarSimulation;
+using CarSimulation.Model;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 

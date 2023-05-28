@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CarSimulation
+namespace CarSimulation.Model
 {
     public class Car
     {
@@ -17,7 +17,7 @@ namespace CarSimulation
         public string SimulatedCommands { get; set; }
         //public string OriginalCommands { get; set; }
         public bool IsCollision { get; set; } // Indicates if the car has collided with another car
-       // public bool IsOutbound { get; set; } // indicate if the car had an instruction which pushed it to outbound
+                                              // public bool IsOutbound { get; set; } // indicate if the car had an instruction which pushed it to outbound
 
         public Car(string name, Position position, Direction direction, string commands)
         {
