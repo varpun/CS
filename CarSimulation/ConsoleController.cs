@@ -1,10 +1,5 @@
 ﻿using CarSimulation.Model;
 using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CarSimulation
 {
@@ -15,7 +10,7 @@ namespace CarSimulation
         private IServiceProvider _serviceProvider;
         private IIOReadWriter _ioReadWriter;
 
-        public ConsoleController(ISimulationService simulationService, CommandParser commandParser,IServiceProvider serviceProvider, IIOReadWriter ioReadWriter)
+        public ConsoleController(ISimulationService simulationService, CommandParser commandParser, IServiceProvider serviceProvider, IIOReadWriter ioReadWriter)
         {
             _simulation = simulationService;
             _commandParser = commandParser;
@@ -47,7 +42,7 @@ namespace CarSimulation
             }
         }
 
-        public void ShowMainMenu()
+        private void ShowMainMenu()
         {
             while (true)
             {
@@ -125,7 +120,6 @@ namespace CarSimulation
                     if (_commandParser.ValidateCommands(commandsInput))
                     {
                         Car car = new Car(carName, position, direction, commandsInput);
-                        //field.AddCar(car);
                         _simulation.AddCar(car);
 
                         _ioReadWriter.StringWriter($"Car {car.Name} added successfully at ({car.SimulatedPosition.X},{car.SimulatedPosition.Y})");

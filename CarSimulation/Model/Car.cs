@@ -1,35 +1,26 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace CarSimulation.Model
+﻿namespace CarSimulation.Model
 {
     public class Car
     {
         public string Name { get; private set; }
-        //public Position OriginalPosition { get; set; }
+
         public Position SimulatedPosition { get; set; }
-        //public Direction OriginalDirection { get; set; } 
+
         public Direction SimulatedDirection { get; set; }
         public string SimulatedCommands { get; set; }
-        //public string OriginalCommands { get; set; }
+
         public bool IsCollision { get; set; } // Indicates if the car has collided with another car
-                                              // public bool IsOutbound { get; set; } // indicate if the car had an instruction which pushed it to outbound
+
 
         public Car(string name, Position position, Direction direction, string commands)
         {
             Name = name;
-            //OriginalDirection = direction;
-            //OriginalPosition = position;
+
             SimulatedPosition = position;
             SimulatedDirection = direction;
             SimulatedCommands = commands;
-            //OriginalCommands = commands;
-            IsCollision = false; // Initialize collision status to false
-            //IsOutbound = false;
+            IsCollision = false;
+
         }
 
         public Position ExecuteNextCommand()
