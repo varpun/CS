@@ -1,20 +1,20 @@
 ﻿using CarSimulation.Model;
 
-namespace CarSimulation
+namespace CarSimulation.Service
 {
     public class SimulationService : ISimulationService, IDisposable
     {
-        public List<Car> Cars { get; private set; }
+        public List<OperatingCar> Cars { get; private set; }
         public Field Field { get; set; }
-        public Dictionary<int, List<Car>> CarCollisionList { get; private set; }
-        public SimulationService(Field field, List<Car> cars, Dictionary<int, List<Car>> carCollisionList)
+        public Dictionary<int, List<OperatingCar>> CarCollisionList { get; private set; }
+        public SimulationService(Field field, List<OperatingCar> cars, Dictionary<int, List<OperatingCar>> carCollisionList)
         {
             Cars = cars;
             Field = field;
             CarCollisionList = carCollisionList;
         }
 
-        public void AddCar(Car car)
+        public void AddCar(OperatingCar car)
         {
             Cars.Add(car);
         }
@@ -25,7 +25,7 @@ namespace CarSimulation
             InitializeCarListValidity();
             for (int step = 1; step <= totalSteps; step++)
             {
-                foreach (Car car in Cars.Where(p => !p.IsCollision))
+                foreach (OperatingCar car in Cars.Where(p => !p.IsCollision))
                 {
                     var newPosition = car.ExecuteNextCommand();
                     if (!newPosition.Equals(car.SimulatedPosition) && !IsCollisionOutOfBound(step, car, newPosition))
@@ -36,7 +36,7 @@ namespace CarSimulation
             }
         }
 
-        private bool IsCollisionOutOfBound(int step, Car car, Position newPosition)
+        private bool IsCollisionOutOfBound(int step, OperatingCar car, Position newPosition)
         {
             if (IsCollision(car, step, newPosition) || !IsWithinBounds(newPosition))
             {
@@ -47,7 +47,7 @@ namespace CarSimulation
 
         private void InitializeCarListValidity()
         {
-            foreach (Car car in Cars)
+            foreach (OperatingCar car in Cars)
             {
                 IsCollisionOutOfBound(0, car, car.SimulatedPosition);
             }
@@ -59,15 +59,15 @@ namespace CarSimulation
             return maxCommands;
         }
 
-        private bool IsCollision(Car currentCar, int step, Position newPosition)
+        private bool IsCollision(OperatingCar currentCar, int step, Position newPosition)
         {
-            var carList = new List<Car>();
+            var carList = new List<OperatingCar>();
             if (CarCollisionList.ContainsKey(step))
             {
                 carList = CarCollisionList[step];
             }
             var stepCollisionStatus = false;
-            foreach (Car car in Cars)
+            foreach (OperatingCar car in Cars)
             {
                 if (!car.Name.Equals(currentCar.Name, StringComparison.OrdinalIgnoreCase) && car.SimulatedPosition.Equals(newPosition))
                 {

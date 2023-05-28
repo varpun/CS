@@ -1,4 +1,6 @@
-﻿using CarSimulation.Model;
+﻿using CarSimulation.Helper;
+using CarSimulation.Model;
+using CarSimulation.Service;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace CarSimulation
@@ -119,7 +121,7 @@ namespace CarSimulation
 
                     if (_commandParser.ValidateCommands(commandsInput))
                     {
-                        Car car = new Car(carName, position, direction, commandsInput);
+                        OperatingCar car = new OperatingCar(carName, position, direction, commandsInput);
                         _simulation.AddCar(car);
 
                         _ioReadWriter.StringWriter($"Car {car.Name} added successfully at ({car.SimulatedPosition.X},{car.SimulatedPosition.Y})");
@@ -173,7 +175,7 @@ namespace CarSimulation
                 }
             }
 
-            foreach (Car car in _simulation.Cars.Where(p => !p.IsCollision))
+            foreach (OperatingCar car in _simulation.Cars.Where(p => !p.IsCollision))
             {
                 _ioReadWriter.StringWriter($"{car.Name}, {car.SimulatedPosition.X} {car.SimulatedPosition.Y} {car.SimulatedDirection}");
             }

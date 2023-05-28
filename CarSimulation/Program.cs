@@ -1,6 +1,8 @@
 ﻿// See https://aka.ms/new-console-template for more information
 using CarSimulation;
+using CarSimulation.Helper;
 using CarSimulation.Model;
+using CarSimulation.Service;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
@@ -12,14 +14,15 @@ public class Program
         .ConfigureServices(services =>
         {
             services.AddScoped<IIOReadWriter, ConsoleReadWriter>();
-            services.AddScoped<Car>();
+            services.AddScoped<OperatingCar>();
             services.AddScoped<Position>();
             services.AddScoped<Field>();
-            services.AddTransient(_ => new List<Car>());
-            services.AddTransient(_ => new Dictionary<int, List<Car>>());
+            services.AddTransient(_ => new List<OperatingCar>());
+            services.AddTransient(_ => new Dictionary<int, List<OperatingCar>>());
             services.AddScoped<ISimulationService, SimulationService>();
             services.AddScoped<CommandParser>();
             services.AddScoped<ConsoleController>();
+            services.AddScoped<CarBase>();
         })
         .Build();
         var runner = host.Services.GetService<ConsoleController>();

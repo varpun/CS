@@ -1,21 +1,15 @@
 ﻿namespace CarSimulation.Model
 {
-    public class Car
+    public class OperatingCar : CarBase
     {
-        public string Name { get; private set; }
-
-        public Position SimulatedPosition { get; set; }
-
-        public Direction SimulatedDirection { get; set; }
         public string SimulatedCommands { get; set; }
 
         public bool IsCollision { get; set; } // Indicates if the car has collided with another car
 
 
-        public Car(string name, Position position, Direction direction, string commands)
+        public OperatingCar(string name, Position position, Direction direction, string commands)
         {
             Name = name;
-
             SimulatedPosition = position;
             SimulatedDirection = direction;
             SimulatedCommands = commands;

@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using CarSimulation.Model;
 
-namespace CarSimulation
+namespace CarSimulation.Helper
 {
     public class CommandParser
     {
@@ -55,7 +55,7 @@ namespace CarSimulation
 
         public bool ValidateCommands(string input)
         {
-            if(string.IsNullOrEmpty(input))
+            if (string.IsNullOrEmpty(input))
             {
                 return false;
             }

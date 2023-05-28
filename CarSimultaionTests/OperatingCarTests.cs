@@ -4,7 +4,7 @@ using NUnit.Framework;
 namespace CarSimultaionTests
 {
     [TestFixture]
-    public class CarTests
+    public class OperatingCarTests
     {
         [Test]
         public void Car_Initialization_SetsProperties()
@@ -16,7 +16,7 @@ namespace CarSimultaionTests
             string commands = "FFRFF";
 
             // Act
-            Car car = new Car(name, position, direction, commands);
+            OperatingCar car = new OperatingCar(name, position, direction, commands);
 
             // Assert
             Assert.AreEqual(name, car.Name);
@@ -30,7 +30,7 @@ namespace CarSimultaionTests
         public void Car_ExecuteNextCommand_RotatesLeft()
         {
             // Arrange
-            Car car = new Car("A", new Position(1, 2), Direction.N, "L");
+            OperatingCar car = new OperatingCar("A", new Position(1, 2), Direction.N, "L");
 
             // Act
             car.ExecuteNextCommand();
@@ -43,7 +43,7 @@ namespace CarSimultaionTests
         public void Car_ExecuteNextCommand_RotatesRight()
         {
             // Arrange
-            Car car = new Car("A", new Position(1, 2), Direction.N, "R");
+            OperatingCar car = new OperatingCar("A", new Position(1, 2), Direction.N, "R");
 
             // Act
             car.ExecuteNextCommand();
@@ -56,7 +56,7 @@ namespace CarSimultaionTests
         public void Car_ExecuteNextCommand_MovesForward()
         {
             // Arrange
-            Car car = new Car("A", new Position(1, 2), Direction.N, "F");
+            OperatingCar car = new OperatingCar("A", new Position(1, 2), Direction.N, "F");
 
             // Act
             var newPosition = car.ExecuteNextCommand();

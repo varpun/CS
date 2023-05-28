@@ -1,5 +1,5 @@
-﻿using CarSimulation;
-using CarSimulation.Model;
+﻿using CarSimulation.Model;
+using CarSimulation.Service;
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
@@ -17,9 +17,9 @@ namespace CarSimultaionTests
             return new Field(width, height);
         }
 
-        private Car CreateCar(string name, Position position, Direction direction, string commands)
+        private OperatingCar CreateCar(string name, Position position, Direction direction, string commands)
         {
-            return new Car(name, position, direction, commands);
+            return new OperatingCar(name, position, direction, commands);
         }
 
         [Test]
@@ -27,10 +27,10 @@ namespace CarSimultaionTests
         {
             // Arrange
             Field field = CreateField(10, 10);
-            List<Car> cars = new List<Car>();
-            Dictionary<int, List<Car>> carCollisionList = new Dictionary<int, List<Car>>();
+            List<OperatingCar> cars = new List<OperatingCar>();
+            Dictionary<int, List<OperatingCar>> carCollisionList = new Dictionary<int, List<OperatingCar>>();
             SimulationService simulationService = new SimulationService(field, cars, carCollisionList);
-            Car car = CreateCar("Car1", new Position(0, 0), Direction.N, "F");
+            OperatingCar car = CreateCar("Car1", new Position(0, 0), Direction.N, "F");
 
             // Act
             simulationService.AddCar(car);
@@ -45,10 +45,10 @@ namespace CarSimultaionTests
         {
             // Arrange
             Field field = CreateField(10, 10);
-            List<Car> cars = new List<Car>();
-            Dictionary<int, List<Car>> carCollisionList = new Dictionary<int, List<Car>>();
+            List<OperatingCar> cars = new List<OperatingCar>();
+            Dictionary<int, List<OperatingCar>> carCollisionList = new Dictionary<int, List<OperatingCar>>();
             SimulationService simulationService = new SimulationService(field, cars, carCollisionList);
-            Car car = CreateCar("Car1", new Position(0, 0), Direction.N, "FF");
+            OperatingCar car = CreateCar("Car1", new Position(0, 0), Direction.N, "FF");
 
             simulationService.AddCar(car);
 
@@ -68,10 +68,10 @@ namespace CarSimultaionTests
         {
             // Arrange
             Field field = CreateField(10, 10);
-            List<Car> cars = new List<Car>();
-            Dictionary<int, List<Car>> carCollisionList = new Dictionary<int, List<Car>>();
+            List<OperatingCar> cars = new List<OperatingCar>();
+            Dictionary<int, List<OperatingCar>> carCollisionList = new Dictionary<int, List<OperatingCar>>();
             SimulationService simulationService = new SimulationService(field, cars, carCollisionList);
-            Car car = CreateCar("Car1", new Position(7, 7), Direction.N, "FFFFFF");
+            OperatingCar car = CreateCar("Car1", new Position(7, 7), Direction.N, "FFFFFF");
 
             simulationService.AddCar(car);
 
@@ -92,12 +92,12 @@ namespace CarSimultaionTests
         {
             // Arrange
             Field field = CreateField(10, 10);
-            List<Car> cars = new List<Car>();
-            Dictionary<int, List<Car>> carCollisionList = new Dictionary<int, List<Car>>();
+            List<OperatingCar> cars = new List<OperatingCar>();
+            Dictionary<int, List<OperatingCar>> carCollisionList = new Dictionary<int, List<OperatingCar>>();
             SimulationService simulationService = new SimulationService(field, cars, carCollisionList);
-            Car car1 = CreateCar("Car1", new Position(0, 0), Direction.N, "FF");
-            Car car2 = CreateCar("Car2", new Position(0, 1), Direction.N, "F");
-            Car car3 = CreateCar("Car3", new Position(0, 2), Direction.N, "R");
+            OperatingCar car1 = CreateCar("Car1", new Position(0, 0), Direction.N, "FF");
+            OperatingCar car2 = CreateCar("Car2", new Position(0, 1), Direction.N, "F");
+            OperatingCar car3 = CreateCar("Car3", new Position(0, 2), Direction.N, "R");
 
             simulationService.AddCar(car1);
             simulationService.AddCar(car2);
@@ -120,11 +120,11 @@ namespace CarSimultaionTests
         public void RunSimulation_MultipleCarsNoCollide_NoCollisionDetectedForAllCars()
         {
             Field field = CreateField(10, 10);
-            List<Car> cars = new List<Car>();
-            Dictionary<int, List<Car>> carCollisionList = new Dictionary<int, List<Car>>();
+            List<OperatingCar> cars = new List<OperatingCar>();
+            Dictionary<int, List<OperatingCar>> carCollisionList = new Dictionary<int, List<OperatingCar>>();
             SimulationService simulationService = new SimulationService(field, cars, carCollisionList);
-            Car car1 = CreateCar("Car1", new Position(2, 2), Direction.N, "FFF");
-            Car car2 = CreateCar("Car2", new Position(3, 3), Direction.E, "FFF");
+            OperatingCar car1 = CreateCar("Car1", new Position(2, 2), Direction.N, "FFF");
+            OperatingCar car2 = CreateCar("Car2", new Position(3, 3), Direction.E, "FFF");
 
             simulationService.AddCar(car1);
             simulationService.AddCar(car2);
@@ -145,10 +145,10 @@ namespace CarSimultaionTests
         {
             // Arrange
             Field field = CreateField(5, 5);
-            List<Car> cars = new List<Car>();
-            Dictionary<int, List<Car>> carCollisionList = new Dictionary<int, List<Car>>();
+            List<OperatingCar> cars = new List<OperatingCar>();
+            Dictionary<int, List<OperatingCar>> carCollisionList = new Dictionary<int, List<OperatingCar>>();
             SimulationService simulationService = new SimulationService(field, cars, carCollisionList);
-            Car car = CreateCar("Car1", new Position(3, 3), Direction.E, "FFFFRRFF");
+            OperatingCar car = CreateCar("Car1", new Position(3, 3), Direction.E, "FFFFRRFF");
 
             simulationService.AddCar(car);
 
